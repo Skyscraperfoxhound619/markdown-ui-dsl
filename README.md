@@ -1,2 +1,111 @@
-# markdown-ui-dsl
-A lightweight, text-based UI wireframing schema optimized for AI coding agents and Spec-Driven Development (SDD).
+# Markdown UI DSL for AI Agents
+
+[![Star on GitHub](https://img.shields.io/github/stars/MegaByteMark/markdown-ui-dsl.svg?style=social)](https://github.com/MegaByteMark/markdown-ui-dsl/stargazers)
+
+A lightweight, text-based wireframing standard designed specifically for AI coding agents and Spec-Driven Development (SDD).
+
+> ⭐️ **If you find this project useful for your AI tooling, please consider giving it a star!** ⭐️
+
+## Table of Contents
+- [The Problem](#the-problem)
+- [The Solution](#the-solution)
+- [Installation & Setup](#installation--setup)
+- [Recommended Project Structure](#recommended-project-structure)
+- [Workflow](#workflow)
+- [Design Theming](#design-theming)
+- [Events & Interactivity](#events--interactivity)
+- [Contributing](#contributing)
+- [License](#license)
+
+## The Problem
+Visual wireframes (Figma, PNGs) are token-heavy, prone to AI hallucination, and hard to version control. Natural language prompts often lack deterministic structure, leading to inconsistent UI generation.
+
+## The Solution
+This project provides a strict Markdown-based Intermediate Representation (IR). Product managers can write easily readable low-fidelity specs, and AI agents can parse them with deterministic accuracy to generate React, Vue, HTML, or any other UI code.
+
+## Installation & Setup
+For the smoothest experience, you should integrate the skill file into your AI agent's specific instruction architecture.
+
+### 1. GitHub Copilot (Agent Mode)
+Copilot Agent mode works best when using its explicit Skill architecture. Set it up using these steps:
+
+1. Initialise your `copilot-instructions.md` by asking Copilot to setup your project for AI agent assistance, or manually create `.github/copilot-instructions.md`.
+2. Create a folder for the skill and download the DSL instructions:
+```bash
+mkdir -p .github/skills/markdown-ui-agent
+curl -o .github/skills/markdown-ui-agent/SKILL.md https://raw.githubusercontent.com/MegaByteMark/markdown-ui-dsl/main/skill/markdown-ui-agent.md
+```
+3. Open your `.github/copilot-instructions.md` file and add the following mapping:
+```markdown
+## Skills
+- For interpreting `ui.md` files, use the `markdown-ui-agent` skill to generate components based on the specifications provided.
+```
+
+### 2. Cursor / Roo Code / Cline
+For agents that use single flat rules files, you can append the skill directly:
+```bash
+# For Cursor (picks up from .cursorrules)
+curl -o .cursorrules https://raw.githubusercontent.com/MegaByteMark/markdown-ui-dsl/main/skill/markdown-ui-agent.md
+
+# For Cline/Roo Code (picks up from .clinerules)
+curl -o .clinerules https://raw.githubusercontent.com/MegaByteMark/markdown-ui-dsl/main/skill/markdown-ui-agent.md
+```
+
+## Recommended Project Structure
+To keep your specs organized and cleanly separated from your application code, we highly recommend creating a `wireframes` folder at the root of your project to hold your DSL designs and your design system file:
+
+```text
+my-app/
+├── .github/
+│   ├── copilot-instructions.md
+│   └── skills/markdown-ui-agent/SKILL.md
+├── src/
+│   └── components/
+└── wireframes/
+    ├── design-system.md
+    └── login-form.ui.md
+```
+
+*(Alternative for Dev-Heavy Teams: You can also choose to **Colocate** your `.ui.md` files directly next to their resulting components in the `src/` directory. If you do this, we recommend moving the rules from `design-system.md` directly into your global agent instructions file so you don't have to manage complex relative pathing in your frontmatter).*
+
+## Workflow
+1. **Spec Generation:** Create a new `.ui.md` file in your `wireframes/` folder or ask your AI: "Plan a login page using the Markdown-UI DSL and save it to `wireframes/login.ui.md`."
+2. **Human Review:** A PM or developer reviews the generated `.ui.md` file and edits the text layout easily.
+3. **Code Generation:** Open an Agent Chat and prompt it: "Create the opening page of the app as a login page and create a component for it from `wireframes/login-form.ui.md`."
+
+## Design Theming
+The Markdown-UI DSL strongly separates structure from style. You can use YAML frontmatter at the top of your `.ui.md` specs to instruct the AI to follow a specific UI framework or custom design system document:
+
+```yaml
+---
+framework: Next.js + TailwindCSS + Shadcn UI
+theme: ./design-system.md
+---
+```
+
+By writing your styling rules, design tokens, and standard CSS classes into a single `design-system.md` file, the AI agent will consistently apply your branding and layout guidelines across every component it generates. Check out the `examples/design-system.md` file for inspiration.
+
+## Events & Interactivity
+You do **not** need to map complex state logic, API calls, or event handlers in the UI DSL. That falls outside the scope of a wireframe and belongs in your overarching SDD (Spec-Driven Development) principles or user stories. 
+
+The DSL captures the *intent* of an action using standard markdown link syntax on buttons:
+* `[ Login ](#login)` -> Indicates a trigger/event handler needs to be mapped.
+* `[ Forgot Password ](/reset-password)` -> Indicates a route change.
+
+When you pass the `.ui.md` file to the AI Agent, you should provide the behavior alongside it in your prompt or a separate requirements document, like so:
+*"Generate the component from `login-form.ui.md`. When `#login` is clicked, mock an API call setting `isLoading` to true, and route to `/dashboard` on success."*
+
+## Contributing
+Contributions and community feedback are highly encouraged! Since this DSL is an evolving standard, your input naturally makes it better.
+
+If you want to contribute:
+1. **Fork the Project**
+2. **Create your Feature Branch** (`git checkout -b feature/amazing-feature`)
+3. **Commit your Changes** (`git commit -m 'Add some amazing feature'`)
+4. **Push to the Branch** (`git push origin feature/amazing-feature`)
+5. **Open a Pull Request**
+
+If you have ideas, want to request a new DSL primitive, or find an issue, please [open an issue](https://github.com/MegaByteMark/markdown-ui-dsl/issues).
+
+## License
+This project is open-source and available under the terms of the project's [LICENSE](LICENSE).

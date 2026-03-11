@@ -1,0 +1,56 @@
+# Minimal SaaS Design System
+*Theme Inspiration: Modern minimalist interfaces (similar to ChatGPT, Vercel, or Shadcn UI)*
+
+This file acts as the styling instructions for the AI Agent. When this file is referenced in a `.ui.md` frontmatter, the LLM will follow these specific design rules when generating code.
+
+## 🎨 Design Tokens
+
+### Colors
+- **Backgrounds:** Soft and subtle. Main app background `bg-gray-50`.
+- **Surfaces/Cards:** Crisp white `bg-white`.
+- **Primary Accent:** Emerald/Teal (`bg-emerald-600` for primary actions, `hover:bg-emerald-700`).
+- **Text:** High contrast `text-gray-900` (headings/primary), subtle `text-gray-500` (body/muted).
+
+### Typography
+- **Font Family:** System sans-serif (Inter, Roboto, or standard sans).
+- **Headings:**
+  - `#` => `text-3xl font-bold tracking-tight text-gray-900 mb-6`
+  - `##` => `text-xl font-semibold text-gray-800 mb-4`
+  - `###` => `text-lg font-medium text-gray-800 mb-3`
+
+## 🧩 Component Mappings
+
+### Layouts & Sections
+- **`||| COLUMN |||`**: Read as a vertical stack. Map to `flex flex-col gap-4`.
+- **`=== ROW ===`**: Read as a horizontal line. Map to `flex flex-row items-center gap-4 flex-wrap`.
+- **`::: CARD :::`**: Map to a sleek, elevated surface.
+  - *Classes:* `bg-white rounded-xl border border-gray-200 shadow-sm p-6`.
+- **`***` (Divider)**: Map to a subtle separator.
+  - *Classes:* `w-full my-6 border-t border-gray-100`.
+
+### Interactive Elements
+- **Buttons (`[ Button ]`)**:
+  - Make them modern with rounded corners and transitions.
+  - *Primary Classes:* `justify-center inline-flex bg-emerald-600 text-white px-4 py-2.5 rounded-lg font-medium hover:bg-emerald-700 transition-colors shadow-sm`.
+  - *Links (`[Link](#)`) used as secondary actions:* `text-gray-600 hover:bg-gray-100 px-4 py-2.5 rounded-lg font-medium`.
+  
+- **Text Inputs (`[ text: ... ]`)**:
+  - *Classes:* `w-full px-4 py-2.5 rounded-lg border border-gray-300 bg-white placeholder-gray-400 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all`.
+
+### Advanced UI Elements
+- **Tabs (`|[ Active ]| Inactive |`)**:
+  - Render as an underlined navigation strip.
+  - *Active Tab:* `border-b-2 border-emerald-600 text-emerald-600 font-medium pb-2`.
+  - *Inactive Tab:* `border-b-2 border-transparent text-gray-500 hover:text-gray-700 pb-2`.
+  
+- **Badges (`(( Badge ))`)**:
+  - *Classes:* `inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200`.
+  
+- **Toggles (`[on] / [off]`)**:
+  - Render as a modern pill-shaped switch (e.g., Shadcn Switch).
+  - *ON State:* Green track (`bg-emerald-600`) with knob moved to the right.
+  - *OFF State:* Gray track (`bg-gray-200`) with knob on the left.
+
+## 📐 General Rule of Thumb
+- **Breathe:** Use generous padding (`p-6`) and spacing (`gap-6`) to achieve a clean interface. Never cramp elements.
+- **Component Libraries:** If working in React and instructed to use Shadcn UI in the frontmatter, map these designs back to Shadcn components (e.g., use `<Card>`, `<Input>`, `<Badge>`, and `<Tabs>`) passing in standard Tailwind strings only as optional overrides.
