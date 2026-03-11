@@ -12,6 +12,7 @@ A lightweight, text-based wireframing standard designed specifically for AI codi
 - [Installation & Setup](#installation--setup)
 - [Recommended Project Structure](#recommended-project-structure)
 - [Workflow](#workflow)
+- [Syntax Quick Reference](#syntax-quick-reference)
 - [Design Theming](#design-theming)
 - [Events & Interactivity](#events--interactivity)
 - [Contributing](#contributing)
@@ -72,6 +73,27 @@ my-app/
 1. **Spec Generation:** Create a new `.ui.md` file in your `wireframes/` folder or ask your AI: "Plan a login page using the Markdown-UI DSL and save it to `wireframes/login.ui.md`."
 2. **Human Review:** A PM or developer reviews the generated `.ui.md` file and edits the text layout easily.
 3. **Code Generation:** Open an Agent Chat and prompt it: "Create the opening page of the app as a login page and create a component for it from `wireframes/login-form.ui.md`."
+
+## Syntax Quick Reference
+Here is a brief overview of the Markdown-UI DSL syntax. Because it relies heavily on natural visual metaphors, it's incredibly fast to read and write without looking at a manual. For the exact AI instruction set, see the [skill/markdown-ui-agent.md](skill/markdown-ui-agent.md) file.
+
+### Layouts
+- **Containers:** `||| COLUMN |||` for vertical stacking, `=== ROW ===` for flex-row alignment.
+- **Surfaces:** `::: CARD :::` or `::: MODAL :::` for elevated containers.
+- **Boundaries:** End *any* layout block with `--- END ---`.
+- **Dividers:** `***` for horizontal visual breaks.
+
+### Components
+- **Text & Lists:** Use standard Markdown (`#`, `**bold**`, `- list item`). Everything naturally parses.
+- **Buttons / Actions:** `[ Button Name ](#action)`
+- **Text Inputs:** `[ text: Placeholder content ]`
+- **Checkboxes:** `[ ] Unchecked` or `[x] Checked`
+- **Radio Buttons:** `( ) Option` or `(x) Selected`
+- **Toggles:** `[on] Enabled` or `[off] Disabled`
+- **Dropdowns / Selects:** `[v] Selected Value {Option 1, Option 2}`
+- **Tabs:** `|[ Active Tab ]| Tab 2 | Tab 3 |`
+- **Badges / Tags:** `(( Premium ))`
+- **Images:** `[ IMG: User Avatar (rounded) ]`
 
 ## Design Theming
 The Markdown-UI DSL strongly separates structure from style. You can use YAML frontmatter at the top of your `.ui.md` specs to instruct the AI to follow a specific UI framework or custom design system document:
