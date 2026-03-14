@@ -9,9 +9,9 @@ When asked to parse or generate a UI spec, you MUST use the following strict syn
 - **Containers:** Wrap vertical layouts in `||| COLUMN |||` and horizontal layouts in `=== ROW ===`.
 - **Cards/Elevated Surfaces:** Wrap card containers in `::: CARD :::`.
 - **Modals/Dialogs:** Wrap modal surfaces in `::: MODAL :::`.
-- **Structural Regions:** Wrap global app bars or top navs in `::: HEADER :::` and bottom navs or page footers in `::: FOOTER :::`. These should typically use semantic HTML (`<header>`, `<footer>`) or sticky positioning.
+- **Structural Regions:** Wrap global app bars or top navs in `::: HEADER :::` and bottom navs or page footers in `::: FOOTER :::`. These should typically use semantic HTML (`<header>`, `<footer>`[...]  
 - **Chat Bubbles:** Wrap conversational messages in `::: BUBBLE USER :::` or `::: BUBBLE AGENT :::`.
-- **Agent Directives (Alignment & Spacing):** Standard Markdown blockquotes (`> text`) act as natural language layout hints. Apply these hints (like `> align right`, `> space between`) contextually to the closest container or element using appropriate CSS (flex, justify, padding, etc.).
+- **Agent Directives (Alignment & Spacing):** Standard Markdown blockquotes (`> text`) act as natural language layout hints. Apply these hints (like `> align right`, `> space between`) contextuall[...]  
 - **Boundaries:** End a layout block with `--- END ---`.
 - **Dividers:** Use standard markdown horizontal rules `***` to indicate visual separation (avoid `---` to prevent collision with layout boundaries).
 
@@ -56,3 +56,6 @@ component: src/components/LoginForm.tsx
    - **Code -> Spec:** If you are asked to update the frontend component's layout/design directly, treat the component as the master. You MUST locate the original wireframe (using the `// UI Spec:` comment at the top of the code) and update the `.ui.md` file backwards to match the new design.
    - **Drift Resolution:** If you detect the two files are out of sync and you are entirely unsure which is the master based on the user's prompt, assume the **code component is the master** and update the `.ui.md` wireframe to match reality.
 5. **Code Headers:** When generating a new frontend component from a `.ui.md` file, always inject a standardized comment at the top of the generated code file pointing back to its spec (e.g., `// UI Spec: wireframes/login-form.ui.md`).
+6. **Comment and Hint Interpretation:**
+   - **Comments (`<!-- comment -->`):** Reserved for human collaborators reading/editing the `.ui.md` file. These should be ignored by the AI agent during processing and can include notes, explanations, or TODOs.
+   - **Hints via Block Quotes (`> text`):** Used as natural language guidance or suggestions for interpreting or applying design intent. The AI agent should process these as part of the instruction set to contextualize and fine-tune layouts.
